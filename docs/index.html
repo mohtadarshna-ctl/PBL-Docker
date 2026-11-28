@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PBL-Docker | Student Management API</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #e2e8f0;
+      --accent: #1d4ed8;
+      --accent-soft: #eff6ff;
+      --code-bg: #0f172a;
+      --code-text: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav-container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 1.25rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    .hero {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-size: 1.9rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 720px;
+      margin-bottom: 1.25rem;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.55rem 1rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: var(--surface);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    section h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.9rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    p + p {
+      margin-top: 0.75rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.75rem;
+      font-size: 0.92rem;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 0.65rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: var(--bg);
+      font-weight: 600;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.88em;
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 0.15rem 0.35rem;
+      border-radius: 4px;
+    }
+
+    pre {
+      background: var(--code-bg);
+      color: var(--code-text);
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin-top: 0.75rem;
+      font-size: 0.88rem;
+    }
+
+    pre code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+    }
+
+    .method {
+      display: inline-block;
+      min-width: 64px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.78rem;
+      padding: 0.2rem 0.45rem;
+      border-radius: 4px;
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <a class="brand" href="#overview">PBL-Docker</a>
+      <nav>
+        <a href="#overview">Overview</a>
+        <a href="#routes">API Routes</a>
+        <a href="#docker">Docker &amp; Compose</a>
+        <a href="#pipeline">CI/CD Pipeline</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero" id="overview">
+      <h1>Student Management API</h1>
+      <p>
+        A containerized FastAPI backend built for the Docker and CI/CD PBL assignment.
+        It provides full CRUD operations for student records, structured request logging,
+        a health check endpoint, automated route verification, and a GitHub Actions pipeline
+        that tests and publishes the image to Docker Hub.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="https://github.com/mohtadarshna-ctl/PBL-Docker">View GitHub Repository</a>
+        <a class="btn" href="#routes">Explore Endpoints</a>
+        <a class="btn" href="#docker">Run with Docker</a>
+      </div>
+    </div>
+
+    <section id="routes">
+      <h2>API Routes</h2>
+      <p>When running locally or inside a container on port 8000, the following endpoints are available:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>Path</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="method">GET</span></td>
+            <td><code>/</code></td>
+            <td>Returns application metadata and route directory.</td>
+          </tr>
+          <tr>
+            <td><span class="method">GET</span></td>
+            <td><code>/health</code></td>
+            <td>Liveness probe returning <code>{"status": "healthy"}</code>.</td>
+          </tr>
+          <tr>
+            <td><span class="method">GET</span></td>
+            <td><code>/students</code></td>
+            <td>Lists all students, with optional <code>?course=</code> query filter.</td>
+          </tr>
+          <tr>
+            <td><span class="method">GET</span></td>
+            <td><code>/students/{id}</code></td>
+            <td>Fetches a single student record by ID.</td>
+          </tr>
+          <tr>
+            <td><span class="method">POST</span></td>
+            <td><code>/students</code></td>
+            <td>Creates a new student record with Pydantic validation.</td>
+          </tr>
+          <tr>
+            <td><span class="method">PUT</span></td>
+            <td><code>/students/{id}</code></td>
+            <td>Updates an existing student record.</td>
+          </tr>
+          <tr>
+            <td><span class="method">DELETE</span></td>
+            <td><code>/students/{id}</code></td>
+            <td>Removes a student record by ID.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="docker">
+      <h2>Running with Docker and Docker Compose</h2>
+      <p>Start the containerized API with a single command using Docker Compose:</p>
+      <pre><code>docker compose up --build -d</code></pre>
+      <p>Run the automated test suite against the running service:</p>
+      <pre><code>python automationTesting.py</code></pre>
+    </section>
+
+    <section id="pipeline">
+      <h2>CI/CD Pipeline</h2>
+      <p>
+        Every push to <code>main</code> triggers the GitHub Actions workflow in
+        <code>.github/workflows/ActionsYaml.yaml</code>. It installs dependencies,
+        starts the FastAPI server, executes <code>automationTesting.py</code> across
+        all routes, and then builds and pushes the Docker image to Docker Hub using
+        repository secrets (<code>DOCKERUSERNAME</code> and <code>DOCKERTOKEN</code>).
+      </p>
+    </section>
+
+    <footer>
+      Hosted via GitHub Pages for mohtadarshna-ctl/PBL-Docker
+    </footer>
+  </main>
+</body>
+</html>
